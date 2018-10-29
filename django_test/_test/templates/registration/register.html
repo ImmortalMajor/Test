@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Registration page</h2>
+    <form method="POST" action="{% url 'register' %}" id="register-form">
+        {% csrf_token %}
+
+        {% if form.errors %}
+            <p>Error when register. Check your inputs.</p>
+        {% endif %}
+
+        <table>
+            {{ form.as_table }}
+             <tr>
+                <td></td>
+                <td id="td-register"><input type="submit" name="submit" value="Register" id="btn-register"/></td>
+            </tr>
+        </table>
+    </form>
+    <script>
+        $('#register-form').find('input').addClass('form-control');
+        $('#register-form').find('#btn-register').attr('class', 'btn btn-primary');
+        $('#register-form').find('#td-register').css('text-align', 'center');
+        //$('#register-form').find('span').addClass('form-text text-muted');
+    </script>
+{% endblock %}

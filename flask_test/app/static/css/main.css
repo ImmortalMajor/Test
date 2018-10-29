@@ -1,0 +1,32 @@
+body {
+  padding-top: 5rem;
+}
+
+.hidden {
+    display: none;
+}
+
+#auth-nav {
+    text-align: right;
+}
+
+#tree > li, #images > li, #categories > li {
+  font-weight: 600;
+  list-style-type: none;
+  letter-spacing: 1px;
+  margin: 3px;
+  cursor: pointer;
+}
+
+#category {
+    margin-bottom: 5px;
+}
+
+span .form-control {
+	overflow-x:hidden;
+}
+
+.input-group>.form-control {
+	/*overflow-x:hidden;*/
+}
+

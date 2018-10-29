@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main role="main" class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+                <h4>Categories</h4>
+                <ul id="categories" class="unstyled">
+                    {% for category in categories %}
+                        <li class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-dark btn-outline-secondary" cat="{{ category.name }}"> &#8659; </button>
+                            </div>
+                            <span class="form-control">{{ category.name }}</span>
+                        </li>
+                        <ul cat="{{ category.name }}"></ul>
+                    {% endfor %}
+                </ul>
+                <input class="form-control form-control-md" type="text" placeholder="Category name" id="category"/>
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <button class="btn btn-dark " id="add_category">Add Category</button>
+                    </li>
+                    <li class="list-inline-item">
+                        <button id="del_category" class="btn btn-dark  hidden">Remove category</button>
+                    </li>
+                </ul>
+
+                <button id="del_file" class="hidden"></button>
+            </div>
+            <div class="col-md-7">
+                <h4 id="path">{{ fs.path }}</h4>
+                {% if fs.drives %}
+                    <ul class="list-inline">
+                        <li class="list-inline-item">Another drive:</li>
+                        <li class="list-inline-item">
+                            <select class="form-control form-control-sm" id="drive" width="50px">
+                                {% for d in fs.drives %}
+                                    <option>{{d}}:\</option>
+                                {% endfor %}
+                            </select>
+                        </li>
+                    </ul>
+                {% endif %}
+                <ul id="tree">
+                    {% if fs.path|length > 3 %}
+                        <li class="list-group-item"><span>..</span></li>
+                    {% endif %}
+                    {% for folder in fs.folders %}
+                        <li class="list-group-item"><span class="navbar-link">{{ folder }}</span></li>
+                    {% endfor %}
+                </ul>
+                <h4>Images</h4>
+                <ul id="images">
+                    {% for image in fs.images %}
+                        <li class="btn btn-light">{{ image }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </main>
+{% endblock %}
